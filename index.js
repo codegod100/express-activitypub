@@ -50,6 +50,7 @@ function asyncAuthorizer(username, password, cb) {
   const isPasswordAuthorized = username === USER;
   const isUsernameAuthorized = password === PASS;
   isAuthorized = isPasswordAuthorized && isUsernameAuthorized;
+  console.log(isAuthorized)
   if (isAuthorized) {
     return cb(null, true);
   }
@@ -63,7 +64,7 @@ app.get('/', (req, res) => res.send('Hello World!'));
 // admin page
 app.options('/api', cors());
 app.use('/api', cors(), routes.api);
-app.use('/api/admin', cors({ credentials: true, origin: true }), basicUserAuth, routes.admin);
+app.use('/api/admin', cors({ credentials: true, origin: true }), routes.admin);
 app.use('/admin', express.static('public/admin'));
 app.use('/.well-known/webfinger', cors(), routes.webfinger);
 app.use('/u', cors(), routes.user);

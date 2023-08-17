@@ -40,6 +40,7 @@ function createWebfinger(name, domain) {
 }
 
 router.post('/create', function (req, res) {
+  console.log("in create")
   // pass in a name for an account, if the account doesn't exist, create it!
   const account = req.body.account;
   if (account === undefined) {
